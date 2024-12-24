@@ -10,8 +10,4 @@ class Card {
   }
 }
 
-const card = new Card("Queen", "Clubs");
-
-console.log(card.getValue());
-
 module.exports = Card;
