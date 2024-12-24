@@ -7,7 +7,7 @@ This project is a JavaScript-based simulation of a hand of Blackjack. It models 
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/yourusername/blackjack-simulator.git
+git clone https://github.com/oliviabuckley/bbc-segs-blackjack-ob.git
 cd blackjack-simulator
 npm install
 ```
