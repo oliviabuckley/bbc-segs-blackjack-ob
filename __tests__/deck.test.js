@@ -122,4 +122,11 @@ describe("Deck", () => {
       expect(deck.isEmpty()).toBe(true);
     });
   });
+  describe("cardsRemaining", () => {
+    test("return the number of cards left in the deck", () => {
+      const deck = new Deck();
+      deck.drawCard();
+      expect(deck.cards.length).toBe(51);
+    });
+  });
 });

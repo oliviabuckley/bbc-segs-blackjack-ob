@@ -44,6 +44,9 @@ class Deck {
   isEmpty() {
     return this.cards.length === 0;
   }
+  cardRemaining() {
+    return this.cards.length;
+  }
 }
 
 module.exports = Deck;
