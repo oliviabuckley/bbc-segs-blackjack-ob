@@ -109,4 +109,17 @@ describe("Deck", () => {
       expect(resetDeck).toEqual(originalDeck);
     });
   });
+  describe("isEmpty", () => {
+    test("return false for a complete deck", () => {
+      const deck = new Deck();
+      expect(deck.isEmpty()).toBe(false);
+    });
+    test("return true for an empty deck", () => {
+      const deck = new Deck();
+      while (!deck.isEmpty()) {
+        deck.drawCard();
+      }
+      expect(deck.isEmpty()).toBe(true);
+    });
+  });
 });
