@@ -38,6 +38,9 @@ class Deck {
   drawCard() {
     return this.cards.pop();
   }
+  resetDeck() {
+    this.cards = this.createDeck();
+  }
 }
 
 module.exports = Deck;
