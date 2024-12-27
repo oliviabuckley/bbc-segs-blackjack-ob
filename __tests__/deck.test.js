@@ -123,8 +123,9 @@ describe("Deck", () => {
     });
   });
   describe("cardsRemaining", () => {
-    test("return the number of cards left in the deck", () => {
+    test("return the number of cards left in the deck after a card is drawn", () => {
       const deck = new Deck();
+      expect(deck.cards.length).toBe(52);
       deck.drawCard();
       expect(deck.cards.length).toBe(51);
     });
