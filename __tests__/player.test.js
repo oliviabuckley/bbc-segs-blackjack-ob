@@ -1,6 +1,5 @@
 const Player = require("../blackjack/player");
 const Card = require("../blackjack/card");
-const Hand = require("../blackjack/hand");
 
 describe("Player", () => {
   describe("addCard", () => {
@@ -58,7 +57,7 @@ describe("Player", () => {
       player.addCard(card4);
       expect(player.isBusted()).toBe(true);
     });
-    test("should return false if the player is not busted (hand value under 21)", () => {
+    test("should return false if the player is under 21", () => {
       const player = new Player();
       const card1 = new Card("Ace", "Spades");
       const card2 = new Card("King", "Clubs");
