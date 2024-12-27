@@ -22,6 +22,9 @@ class Hand {
     }
     return totalValue;
   }
+  showHand() {
+    return this.cards.map((card) => `${card.rank} of ${card.suit}`).join(", ");
+  }
   isBust() {
     return this.getHandValue() > 21;
   }

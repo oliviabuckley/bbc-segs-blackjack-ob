@@ -50,6 +50,26 @@ describe("Hand", () => {
       expect(hand.getHandValue()).toBe(12);
     });
   });
+  describe("showHand", () => {
+    test("return a string with card details in the hand", () => {
+      const hand = new Hand();
+      const card1 = new Card("Ace", "Spades");
+      const card2 = new Card("King", "Diamonds");
+      hand.addCard(card1);
+      hand.addCard(card2);
+      expect(hand.showHand()).toBe("Ace of Spades, King of Diamonds");
+    });
+    test("return correct hand with one card", () => {
+      const hand = new Hand();
+      const card = new Card("10", "Hearts");
+      hand.addCard(card);
+      expect(hand.showHand()).toBe("10 of Hearts");
+    });
+    test("return empty string for empty hand", () => {
+      const hand = new Hand();
+      expect(hand.showHand()).toBe("");
+    });
+  });
   describe("isBust", () => {
     test("return true if value of hand exceeds 21", () => {
       const hand = new Hand();
