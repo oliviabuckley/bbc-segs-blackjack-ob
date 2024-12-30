@@ -13,7 +13,7 @@ class Hand {
     let totalValue = 0;
     let aceCount = 0;
     this.cards.forEach((card) => {
-      totalValue += card.getValue();
+      totalValue += card.getCardValue();
       if (card.rank === "Ace") aceCount++;
     });
     while (totalValue > 21 && aceCount > 0) {

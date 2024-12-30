@@ -44,7 +44,7 @@ class Deck {
   isEmpty() {
     return this.cards.length === 0;
   }
-  cardRemaining() {
+  cardsRemaining() {
     return this.cards.length;
   }
 }
