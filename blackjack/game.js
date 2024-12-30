@@ -1,13 +1,18 @@
 const Deck = require("./deck");
 const Player = require("./player");
 const Dealer = require("./dealer");
+const readline = require("readline");
 
 class Game {
   constructor() {
     this.deck = new Deck();
-    this.player = new Player("Olivia");
+    this.player = new Player();
     this.dealer = new Dealer();
     this.gameOver = false;
+    this.rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
   }
   startGame() {
     this.deck.shuffleDeck();
@@ -23,10 +28,27 @@ class Game {
     if (this.player.hasBlackjack()) {
       this.gameOver = true;
       console.log("Player has Blackjack! Player Wins!");
+      this.rl.close();
     } else if (this.dealer.hasBlackjack()) {
       this.gameOver = true;
       console.log("Dealer has Blackjack! Dealer Wins!");
+      this.rl.close();
+    } else {
+      this.promptPlayer();
     }
+  }
+  promptPlayer() {
+    if (this.gameOver) return;
+    this.rl.question("Do you want to 'hit' or 'stand'? ", (action) => {
+      if (action === "hit") {
+        this.playerTurn(action);
+      } else if (action === "stand") {
+        this.playerTurn(action);
+      } else {
+        console.log("Invalid choice. Please choose 'hit' or 'stand'.");
+        this.promptPlayer();
+      }
+    });
   }
   playerTurn(action) {
     if (this.gameOver) return;
@@ -35,13 +57,16 @@ class Game {
       console.log("Player's Hand: " + this.player.showHand());
       if (this.player.isBusted()) {
         this.gameOver = true;
-        return "Player Busts";
+        console.log("Player Busts");
+        this.rl.close();
+        return;
       }
-      return "Player Hits";
-    }
-    if (action === "stand") {
+      console.log("Player Hits");
+      this.promptPlayer();
+    } else if (action === "stand") {
       console.log("Player's Hand: " + this.player.showHand());
-      return "Player Stands";
+      console.log("Player Stands");
+      this.dealerTurn();
     }
   }
   dealerTurn() {
@@ -50,43 +75,34 @@ class Game {
     console.log("Dealer's Hand: " + this.dealer.showHand());
     if (this.dealer.isBusted()) {
       this.gameOver = true;
-      return "Dealer Busts";
+      console.log("Dealer Busts");
+      this.rl.close();
+      return;
     }
-    return "Dealer Finishes Turn";
+    console.log("Dealer Stands");
+    this.determineWinner();
   }
   determineWinner() {
     const playerHandValue = this.player.hand.getHandValue();
     const dealerHandValue = this.dealer.hand.getHandValue();
-
     console.log("Player's Hand Value: " + playerHandValue);
     console.log("Dealer's Hand Value: " + dealerHandValue);
 
     if (playerHandValue > 21) {
-      return "Dealer Wins (Player Busts)";
+      console.log("Dealer Wins (Player Busts)");
     } else if (dealerHandValue > 21) {
-      return "Player Wins (Dealer Busts)";
+      console.log("Player Wins (Dealer Busts)");
     } else if (playerHandValue > dealerHandValue) {
-      return "Player Wins";
+      console.log("Player Wins");
     } else if (dealerHandValue > playerHandValue) {
-      return "Dealer Wins";
+      console.log("Dealer Wins");
     } else {
-      return "It's a Tie";
+      console.log("It's a Tie");
     }
+    this.rl.close();
   }
 }
 
 const game = new Game();
 game.startGame();
-
-// Player turn
-console.log(game.playerTurn("hit")); // or "stand"
-
-// Dealer turn
-console.log(game.dealerTurn());
-
-// Determine winner
-if (game.gameOver) {
-  console.log(game.determineWinner());
-}
-
 module.exports = Game;
