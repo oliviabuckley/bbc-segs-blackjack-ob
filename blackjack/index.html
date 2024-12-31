@@ -8,14 +8,49 @@
   </head>
   <body>
     <h1>Blackjack 🃏</h1>
-    <div id="player-hand">Your hand:</div>
-    <div id="dealer-hand">Dealer's hand:</div>
+    <div id="instructions">
+      <h2>How to Play</h2>
+      <p>
+        Welcome to Blackjack! The goal of the game is to get as close as
+        possible to 21 without going over.
+      </p>
+      <p>
+        You will be dealt two cards when the game starts. If the sum of these
+        cards is 21, you have Blackjack and have won the game. If you don't have
+        Blackjack, you need to decide if you want to draw another card (hit), or
+        stick with the hand you have (stand).
+      </p>
+      <p>
+        <strong>Player's turn:</strong> Click "Hit" to draw another card, or
+        "Stand" to end your turn.
+      </p>
+      <p>
+        <strong>Dealer's turn:</strong> The dealer will play automatically after
+        the player stands. The dealer must draw cards until they reach 17 or
+        higher.
+      </p>
+      <p>
+        If either the player or dealer goes over 21, they bust and lose the
+        game. If both have the same hand value, it's a tie!
+      </p>
+    </div>
+    <div id="player-hand" style="display: none">
+      <div id="player-hand-title">Your hand:</div>
+      <div id="player-cards" class="card-container"></div>
+    </div>
+    <div id="dealer-hand" style="display: none">
+      <div id="dealer-hand-title">Dealer's hand:</div>
+      <div id="dealer-cards" class="card-container"></div>
+    </div>
 
     <div id="game-message"></div>
-
-    <button id="start-button">Start Game</button>
+    <div id="name-input-container">
+      <input type="text" id="player-name" placeholder="Enter your name" />
+      <button id="start-button">Start Game</button>
+    </div>
     <button id="hit-button" disabled>Hit</button>
     <button id="stand-button" disabled>Stand</button>
+    <button id="play-again-button" style="display: none">Play Again</button>
     <footer>Coded by Olivia Buckley 👩🏼‍💻</footer>
     <script type="module" src="runGame.js"></script>
   </body>

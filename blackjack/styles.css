@@ -1,24 +1,108 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: green;
+  background-color: #006400;
   color: antiquewhite;
   height: 100vh;
 }
+#instructions {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+}
+
+#instructions h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#instructions p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+#name-input-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#player-name {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #004d00;
+  border-radius: 5px;
+  background-color: #e6ffe6;
+  color: #004d00;
+  width: 200px;
+}
+
+#player-name:focus {
+  outline: none;
+  border-color: #be2312bf;
+  box-shadow: 0 0 5px #be2312bf;
+}
+
 #game-message {
   margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 20px;
 }
-#player-hand,
-#dealer-hand {
+
+#dealer-hand,
+#player-hand {
+  margin-bottom: 20px;
+}
+#dealer-hand-title,
+#player-hand-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#dealer-cards,
+#player-cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   margin-top: 10px;
 }
 button {
   padding: 10px 20px;
   font-size: 16px;
+  color: white;
+  background-color: #004d00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #be2312bf;
+}
+
+button:disabled {
+  background-color: #a6a6a6;
+  cursor: not-allowed;
+}
+.card-container {
+  display: flex;
+  gap: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
+}
+
+.card-container img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.card-image {
+  width: 70px;
+  margin: 5px;
+  display: inline-block;
 }
 footer {
   font-family: monospace;
+  padding: 20px;
 }
