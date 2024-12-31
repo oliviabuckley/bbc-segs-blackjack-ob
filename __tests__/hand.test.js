@@ -1,11 +1,7 @@
-const Hand = require("../blackjack/hand");
-const Card = require("../blackjack/card");
+import Hand from "../blackjack/hand.js";
+import Card from "../blackjack/card.js";
 
 describe("Hand", () => {
-  test("initialise an empty hand", () => {
-    const hand = new Hand();
-    expect(hand.cards.length).toBe(0);
-  });
   describe("addCard", () => {
     test("add a card to the hand", () => {
       const hand = new Hand();
@@ -13,6 +9,16 @@ describe("Hand", () => {
       hand.addCard(card);
       expect(hand.cards.length).toBe(1);
       expect(hand.cards[0]).toBe(card);
+    });
+    test("add multiple cards to the hand", () => {
+      const hand = new Hand();
+      const card1 = new Card("7", "Diamonds");
+      const card2 = new Card("8", "Clubs");
+      hand.addCard(card1);
+      hand.addCard(card2);
+      expect(hand.cards.length).toBe(2);
+      expect(hand.cards[0]).toBe(card1);
+      expect(hand.cards[1]).toBe(card2);
     });
   });
   describe("getHandValue", () => {
@@ -49,8 +55,25 @@ describe("Hand", () => {
       hand.addCard(card2);
       expect(hand.getHandValue()).toBe(12);
     });
+    test("handle multiple aces with other values correctly", () => {
+      const hand = new Hand();
+      const card1 = new Card("Ace", "Spades");
+      const card2 = new Card("Ace", "Diamonds");
+      const card3 = new Card("9", "Hearts");
+      hand.addCard(card1);
+      hand.addCard(card2);
+      expect(hand.getHandValue()).toBe(12);
+      hand.addCard(card3);
+      expect(hand.getHandValue()).toBe(21);
+    });
   });
   describe("showHand", () => {
+    test("return correct hand with one card", () => {
+      const hand = new Hand();
+      const card = new Card("10", "Hearts");
+      hand.addCard(card);
+      expect(hand.showHand()).toBe("10 of Hearts");
+    });
     test("return a string with card details in the hand", () => {
       const hand = new Hand();
       const card1 = new Card("Ace", "Spades");
@@ -58,12 +81,6 @@ describe("Hand", () => {
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.showHand()).toBe("Ace of Spades, King of Diamonds");
-    });
-    test("return correct hand with one card", () => {
-      const hand = new Hand();
-      const card = new Card("10", "Hearts");
-      hand.addCard(card);
-      expect(hand.showHand()).toBe("10 of Hearts");
     });
     test("return empty string for empty hand", () => {
       const hand = new Hand();
@@ -98,6 +115,14 @@ describe("Hand", () => {
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.hasBlackjack()).toBe(true);
+    });
+    test("return false for a score below 21", () => {
+      const hand = new Hand();
+      const card1 = new Card("Ace", "Clubs");
+      const card2 = new Card("3", "Diamonds");
+      hand.addCard(card1);
+      hand.addCard(card2);
+      expect(hand.hasBlackjack()).toBe(false);
     });
     test("return false for a score of 21 from more than 2 cards", () => {
       const hand = new Hand();

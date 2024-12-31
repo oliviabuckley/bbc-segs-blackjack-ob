@@ -1,4 +1,4 @@
-const Deck = require("../blackjack/deck");
+import Deck from "../blackjack/deck.js";
 
 describe("Deck", () => {
   describe("createDeck", () => {
@@ -33,11 +33,11 @@ describe("Deck", () => {
         });
       });
     });
-    test("contain only unique cards, no duplicates", () => {
+    test("contain only unique cards", () => {
       const deck = new Deck();
       const uniqueCards = new Set();
       deck.cards.forEach((card) => {
-        const cardIdentifier = `${card.rank}-${card.suit}`;
+        const cardIdentifier = `${card.rank} of ${card.suit}`;
         expect(uniqueCards.has(cardIdentifier)).toBe(false);
         uniqueCards.add(cardIdentifier);
       });
@@ -96,7 +96,7 @@ describe("Deck", () => {
       );
       expect(uniqueCards.size).toBe(52);
     });
-    test("should reset the deck to its original order (unshuffled)", () => {
+    test("reset the deck to its original order", () => {
       const deck = new Deck();
       const originalDeck = deck.cards.map(
         (card) => `${card.rank} of ${card.suit}`
@@ -125,9 +125,9 @@ describe("Deck", () => {
   describe("cardsRemaining", () => {
     test("return the number of cards left in the deck after a card is drawn", () => {
       const deck = new Deck();
-      expect(deck.cards.length).toBe(52);
+      expect(deck.cardsRemaining()).toBe(52);
       deck.drawCard();
-      expect(deck.cards.length).toBe(51);
+      expect(deck.cardsRemaining()).toBe(51);
     });
   });
 });
