@@ -1,6 +1,6 @@
-const Card = require("./card");
+import Card from "./card.js";
 
-class Hand {
+export default class Hand {
   constructor() {
     this.cards = [];
   }
@@ -35,5 +35,3 @@ class Hand {
     this.cards = [];
   }
 }
-
-module.exports = Hand;

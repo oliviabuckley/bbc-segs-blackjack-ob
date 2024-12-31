@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(rank, suit) {
     this.rank = rank;
     this.suit = suit;
@@ -9,5 +9,3 @@ class Card {
     return parseInt(this.rank);
   }
 }
-
-module.exports = Card;
