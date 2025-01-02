@@ -12,7 +12,8 @@ document.getElementById("start-button").addEventListener("click", () => {
     document.getElementById("name-input-container").style.display = "none";
     game.startGame();
     document.getElementById("start-button").disabled = true;
-
+    document.getElementById("hit-button").classList.remove("hidden");
+    document.getElementById("stand-button").classList.remove("hidden");
     document.getElementById("hit-button").disabled = false;
     document.getElementById("stand-button").disabled = false;
     document.getElementById("instructions").style.display = "block";
