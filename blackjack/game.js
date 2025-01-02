@@ -12,6 +12,7 @@ export default class Game {
   }
 
   initialiseGame() {
+    this.deck = new Deck();
     this.deck.shuffleDeck();
     this.player.hand.resetHand();
     this.dealer.hand.resetHand();
