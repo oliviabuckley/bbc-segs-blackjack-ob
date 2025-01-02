@@ -3,29 +3,47 @@ body {
   text-align: center;
   background-color: #006400;
   color: antiquewhite;
-  height: 100vh;
 }
+
 #instructions {
   padding: 10px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-style: solid;
+  border-style: double;
 }
 
 #instructions h2 {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #instructions p {
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
+
+ul {
+  margin: 10px auto;
+  padding: 0;
+  list-style-position: inside;
+  list-style-type: disc;
+  font-size: 15px;
+}
+
+ul li {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
 #name-input-container {
   text-align: center;
   margin: 20px 0;
   margin-bottom: 10px;
+}
+
+#game-message {
+  font-weight: bold;
 }
 
 #player-name {
@@ -47,19 +65,14 @@ body {
 #game-message {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #dealer-hand,
 #player-hand {
   margin-bottom: 20px;
 }
-#dealer-hand-title,
-#player-hand-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
 #dealer-cards,
 #player-cards {
   display: flex;
@@ -67,6 +80,24 @@ body {
   justify-content: center;
   margin-top: 10px;
 }
+.card-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-container img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.card-image {
+  width: 70px;
+  margin: 5px;
+  display: inline-block;
+}
+
 .hand-title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -93,23 +124,7 @@ button:disabled {
   background-color: #a6a6a6;
   cursor: not-allowed;
 }
-.card-container {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
 
-.card-container img {
-  width: 100px;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-.card-image {
-  width: 70px;
-  margin: 5px;
-  display: inline-block;
-}
 footer {
   font-family: monospace;
   padding: 10px;
