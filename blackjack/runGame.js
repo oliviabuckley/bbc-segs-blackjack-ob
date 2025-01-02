@@ -46,10 +46,16 @@ document.getElementById("play-again-button").addEventListener("click", () => {
 });
 
 function updateGameUI() {
-  document.getElementById(
-    "player-hand"
-  ).innerHTML = `${game.player.name}'s hand: `;
-  document.getElementById("dealer-hand").innerHTML = "Dealer's hand: ";
+  const playerHandContainer = document.getElementById("player-hand");
+  const dealerHandContainer = document.getElementById("dealer-hand");
+
+  playerHandContainer.innerHTML = "";
+  dealerHandContainer.innerHTML = "";
+
+  const playerText = document.createElement("div");
+  playerText.textContent = `${game.player.name}'s hand:`;
+  playerText.classList.add("hand-title");
+  playerHandContainer.appendChild(playerText);
 
   game.player.hand.cards.forEach((card) => {
     const img = document.createElement("img");
@@ -58,6 +64,11 @@ function updateGameUI() {
     img.classList.add("card-image");
     document.getElementById("player-hand").appendChild(img);
   });
+
+  const dealerText = document.createElement("div");
+  dealerText.textContent = "Dealer's hand:";
+  dealerText.classList.add("hand-title");
+  dealerHandContainer.appendChild(dealerText);
 
   game.dealer.hand.cards.forEach((card) => {
     const img = document.createElement("img");
