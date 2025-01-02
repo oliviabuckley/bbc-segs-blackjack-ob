@@ -1,48 +1,59 @@
 import Game from "./game.js";
 import Player from "./player.js";
 
+const startButton = document.getElementById("start-button");
+const hitButton = document.getElementById("hit-button");
+const standButton = document.getElementById("stand-button");
+const playAgainButton = document.getElementById("play-again-button");
+const playerHandContainer = document.getElementById("player-hand");
+const dealerHandContainer = document.getElementById("dealer-hand");
+const gameMessage = document.getElementById("game-message");
+const instructions = document.getElementById("instructions");
+const nameInputContainer = document.getElementById("name-input-container");
+const playerNameInput = document.getElementById("player-name");
+
 const game = new Game();
-document.getElementById("instructions").style.display = "block";
 
-document.getElementById("start-button").addEventListener("click", () => {
-  const playerName = document.getElementById("player-name").value;
+instructions.style.display = "block";
 
-  if (playerName.trim()) {
+startButton.addEventListener("click", () => {
+  const playerName = playerNameInput.value.trim();
+
+  if (playerName) {
     game.player = new Player(playerName);
-    document.getElementById("name-input-container").style.display = "none";
+    nameInputContainer.style.display = "none";
     game.startGame();
-    document.getElementById("start-button").disabled = true;
-    document.getElementById("hit-button").classList.remove("hidden");
-    document.getElementById("stand-button").classList.remove("hidden");
-    document.getElementById("hit-button").disabled = false;
-    document.getElementById("stand-button").disabled = false;
-    document.getElementById("instructions").style.display = "block";
-    document.getElementById("instructions").style.display = "none";
-    document.getElementById("play-again-button").style.display = "none";
-    document.getElementById("player-hand").style.display = "block";
-    document.getElementById("dealer-hand").style.display = "block";
+    startButton.disabled = true;
+    hitButton.classList.remove("hidden");
+    standButton.classList.remove("hidden");
+    hitButton.disabled = false;
+    standButton.disabled = false;
+    instructions.style.display = "none";
+    playAgainButton.style.display = "none";
+    playerHandContainer.style.display = "block";
+    dealerHandContainer.style.display = "block";
     updateGameUI();
   } else {
     alert("Please enter a name to start the game.");
   }
 });
 
-document.getElementById("hit-button").addEventListener("click", () => {
+hitButton.addEventListener("click", () => {
   game.playerTurn("hit");
   updateGameUI();
 });
 
-document.getElementById("stand-button").addEventListener("click", () => {
+standButton.addEventListener("click", () => {
   game.playerTurn("stand");
   updateGameUI();
 });
 
-document.getElementById("play-again-button").addEventListener("click", () => {
+playAgainButton.addEventListener("click", () => {
   game.startGame();
-  document.getElementById("start-button").disabled = true;
-  document.getElementById("hit-button").disabled = false;
-  document.getElementById("stand-button").disabled = false;
-  document.getElementById("play-again-button").style.display = "none";
+  startButton.disabled = true;
+  hitButton.disabled = false;
+  standButton.disabled = false;
+  playAgainButton.style.display = "none";
   updateGameUI();
 });
 
@@ -63,7 +74,7 @@ function updateGameUI() {
     img.src = card.getImage();
     img.alt = `${card.rank} of ${card.suit}`;
     img.classList.add("card-image");
-    document.getElementById("player-hand").appendChild(img);
+    playerHandContainer.appendChild(img);
   });
 
   const dealerText = document.createElement("div");
@@ -76,14 +87,14 @@ function updateGameUI() {
     img.src = card.getImage();
     img.alt = `${card.rank} of ${card.suit}`;
     img.classList.add("card-image");
-    document.getElementById("dealer-hand").appendChild(img);
+    dealerHandContainer.appendChild(img);
   });
 
-  document.getElementById("game-message").textContent = game.message;
+  gameMessage.textContent = game.message;
 
   if (game.isGameOver) {
-    document.getElementById("hit-button").disabled = true;
-    document.getElementById("stand-button").disabled = true;
-    document.getElementById("play-again-button").style.display = "inline";
+    hitButton.disabled = true;
+    standButton.disabled = true;
+    playAgainButton.style.display = "inline";
   }
 }
