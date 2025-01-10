@@ -82,10 +82,15 @@ function updateGameUI() {
   dealerText.classList.add("hand-title");
   dealerHandContainer.appendChild(dealerText);
 
-  game.dealer.hand.cards.forEach((card) => {
+  game.dealer.hand.cards.forEach((card, index) => {
     const img = document.createElement("img");
-    img.src = card.getImage();
-    img.alt = `${card.rank} of ${card.suit}`;
+    if (index === 1 && !game.isDealerTurn) {
+      img.src = "images/card_back.png";
+      img.alt = "Hidden card";
+    } else {
+      img.src = card.getImage();
+      img.alt = `${card.rank} of ${card.suit}`;
+    }
     img.classList.add("card-image");
     dealerHandContainer.appendChild(img);
   });

@@ -9,6 +9,7 @@ export default class Game {
     this.dealer = new Dealer();
     this.isGameOver = false;
     this.message = "";
+    this.isDealerTurn = false;
   }
 
   initialiseGame() {
@@ -18,6 +19,7 @@ export default class Game {
     this.dealer.hand.resetHand();
     this.isGameOver = false;
     this.message = "";
+    this.isDealerTurn = false;
   }
 
   dealInitialCards() {
@@ -51,6 +53,7 @@ export default class Game {
   }
 
   dealerTurn() {
+    this.isDealerTurn = true;
     this.dealer.playTurn(this.deck);
     if (this.dealer.hand.isBust()) {
       this.endGame("Dealer Busts. Player Wins!");
@@ -75,5 +78,6 @@ export default class Game {
   endGame(message) {
     this.isGameOver = true;
     this.message = message;
+    this.isDealerTurn = true;
   }
 }
