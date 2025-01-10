@@ -5,15 +5,15 @@ describe("Hand", () => {
   describe("addCard", () => {
     test("add a card to the hand", () => {
       const hand = new Hand();
-      const card = new Card("7", "Diamonds");
+      const card = new Card("7", "diamonds");
       hand.addCard(card);
       expect(hand.cards.length).toBe(1);
       expect(hand.cards[0]).toBe(card);
     });
     test("add multiple cards to the hand", () => {
       const hand = new Hand();
-      const card1 = new Card("7", "Diamonds");
-      const card2 = new Card("8", "Clubs");
+      const card1 = new Card("7", "diamonds");
+      const card2 = new Card("8", "clubs");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.cards.length).toBe(2);
@@ -28,38 +28,38 @@ describe("Hand", () => {
     });
     test("return the correct value of cards in the hand", () => {
       const hand = new Hand();
-      const card1 = new Card("3", "Clubs");
-      const card2 = new Card("8", "Diamonds");
+      const card1 = new Card("3", "clubs");
+      const card2 = new Card("8", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.getHandValue()).toBe(11);
     });
     test("count Ace as 11 if total value is under 21", () => {
       const hand = new Hand();
-      hand.addCard(new Card("Ace", "Spades"));
-      hand.addCard(new Card("5", "Diamonds"));
+      hand.addCard(new Card("ace", "spades"));
+      hand.addCard(new Card("5", "diamonds"));
       expect(hand.getHandValue()).toBe(16);
     });
     test("count Ace as 1 if total value is over 21", () => {
       const hand = new Hand();
-      hand.addCard(new Card("Ace", "Spades"));
-      hand.addCard(new Card("5", "Diamonds"));
-      hand.addCard(new Card("10", "Clubs"));
+      hand.addCard(new Card("ace", "spades"));
+      hand.addCard(new Card("5", "diamonds"));
+      hand.addCard(new Card("10", "clubs"));
       expect(hand.getHandValue()).toBe(16);
     });
     test("handle multiple Aces correctly", () => {
       const hand = new Hand();
-      const card1 = new Card("Ace", "Spades");
-      const card2 = new Card("Ace", "Diamonds");
+      const card1 = new Card("ace", "spades");
+      const card2 = new Card("ace", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.getHandValue()).toBe(12);
     });
     test("handle multiple aces with other values correctly", () => {
       const hand = new Hand();
-      const card1 = new Card("Ace", "Spades");
-      const card2 = new Card("Ace", "Diamonds");
-      const card3 = new Card("9", "Hearts");
+      const card1 = new Card("ace", "spades");
+      const card2 = new Card("ace", "diamonds");
+      const card3 = new Card("9", "hearts");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.getHandValue()).toBe(12);
@@ -70,17 +70,17 @@ describe("Hand", () => {
   describe("showHand", () => {
     test("return correct hand with one card", () => {
       const hand = new Hand();
-      const card = new Card("10", "Hearts");
+      const card = new Card("10", "hearts");
       hand.addCard(card);
-      expect(hand.showHand()).toBe("10 of Hearts");
+      expect(hand.showHand()).toBe("10 of hearts");
     });
     test("return a string with card details in the hand", () => {
       const hand = new Hand();
-      const card1 = new Card("Ace", "Spades");
-      const card2 = new Card("King", "Diamonds");
+      const card1 = new Card("ace", "spades");
+      const card2 = new Card("king", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
-      expect(hand.showHand()).toBe("Ace of Spades, King of Diamonds");
+      expect(hand.showHand()).toBe("ace of spades, king of diamonds");
     });
     test("return empty string for empty hand", () => {
       const hand = new Hand();
@@ -90,9 +90,9 @@ describe("Hand", () => {
   describe("isBust", () => {
     test("return true if value of hand exceeds 21", () => {
       const hand = new Hand();
-      const card1 = new Card("8", "Clubs");
-      const card2 = new Card("10", "Diamonds");
-      const card3 = new Card("9", "Spades");
+      const card1 = new Card("8", "clubs");
+      const card2 = new Card("10", "diamonds");
+      const card3 = new Card("9", "spades");
       hand.addCard(card1);
       hand.addCard(card2);
       hand.addCard(card3);
@@ -100,8 +100,8 @@ describe("Hand", () => {
     });
     test("return false if value of hand does not exceed 21", () => {
       const hand = new Hand();
-      const card1 = new Card("8", "Clubs");
-      const card2 = new Card("10", "Diamonds");
+      const card1 = new Card("8", "clubs");
+      const card2 = new Card("10", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.isBust()).toBe(false);
@@ -110,25 +110,25 @@ describe("Hand", () => {
   describe("hasBlackjack", () => {
     test("return true for a blackjack hand)", () => {
       const hand = new Hand();
-      const card1 = new Card("Ace", "Clubs");
-      const card2 = new Card("King", "Diamonds");
+      const card1 = new Card("ace", "clubs");
+      const card2 = new Card("king", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.hasBlackjack()).toBe(true);
     });
     test("return false for a score below 21", () => {
       const hand = new Hand();
-      const card1 = new Card("Ace", "Clubs");
-      const card2 = new Card("3", "Diamonds");
+      const card1 = new Card("ace", "clubs");
+      const card2 = new Card("3", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       expect(hand.hasBlackjack()).toBe(false);
     });
     test("return false for a score of 21 from more than 2 cards", () => {
       const hand = new Hand();
-      const card1 = new Card("10", "Clubs");
-      const card2 = new Card("10", "Diamonds");
-      const card3 = new Card("1", "Diamonds");
+      const card1 = new Card("10", "clubs");
+      const card2 = new Card("10", "diamonds");
+      const card3 = new Card("1", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       hand.addCard(card3);
@@ -138,8 +138,8 @@ describe("Hand", () => {
   describe("resetHand", () => {
     test("remove all cards from hand", () => {
       const hand = new Hand();
-      const card1 = new Card("3", "Clubs");
-      const card2 = new Card("8", "Diamonds");
+      const card1 = new Card("3", "clubs");
+      const card2 = new Card("8", "diamonds");
       hand.addCard(card1);
       hand.addCard(card2);
       hand.resetHand();

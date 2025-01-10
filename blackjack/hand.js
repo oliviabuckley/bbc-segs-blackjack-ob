@@ -14,7 +14,7 @@ export default class Hand {
     let aceCount = 0;
     this.cards.forEach((card) => {
       totalValue += card.getCardValue();
-      if (card.rank === "Ace") aceCount++;
+      if (card.rank === "ace") aceCount++;
     });
     while (totalValue > 21 && aceCount > 0) {
       totalValue -= 10;

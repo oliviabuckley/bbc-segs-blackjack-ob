@@ -18,12 +18,12 @@ describe("Deck", () => {
         "8",
         "9",
         "10",
-        "Jack",
-        "Queen",
-        "King",
-        "Ace",
+        "jack",
+        "queen",
+        "king",
+        "ace",
       ];
-      const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
+      const suits = ["hearts", "diamonds", "clubs", "spades"];
       ranks.forEach((rank) => {
         suits.forEach((suit) => {
           const cardFound = deck.cards.some(

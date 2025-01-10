@@ -15,12 +15,12 @@ export default class Deck {
       "8",
       "9",
       "10",
-      "Jack",
-      "Queen",
-      "King",
-      "Ace",
+      "jack",
+      "queen",
+      "king",
+      "ace",
     ];
-    const suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+    const suits = ["clubs", "diamonds", "hearts", "spades"];
     let deck = [];
     for (let suit of suits) {
       for (let rank of ranks) {
