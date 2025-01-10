@@ -178,13 +178,6 @@ describe("Game", () => {
       game.endGame("Player Wins!");
       expect(game.message).toBe("Player Wins!");
     });
-    test("log the correct message when the game ends", () => {
-      const game = new Game();
-      const consoleLogSpy = jest.spyOn(console, "log").mockImplementation();
-      game.endGame("Player Wins!");
-      expect(consoleLogSpy).toHaveBeenCalledWith("Player Wins!");
-      consoleLogSpy.mockRestore();
-    });
     test("end the game with a draw", () => {
       const game = new Game();
       game.endGame("It's a Tie!");

@@ -30,10 +30,6 @@ export default class Game {
   startGame() {
     this.initialiseGame();
     this.dealInitialCards();
-    console.log("Game Started");
-    console.log("Player's Hand: " + this.player.hand.showHand());
-    console.log("Dealer's Hand: " + this.dealer.hand.showHand());
-
     if (this.player.hand.hasBlackjack()) {
       this.endGame("Player has Blackjack! Player Wins!");
     } else if (this.dealer.hand.hasBlackjack()) {
@@ -44,7 +40,6 @@ export default class Game {
   playerTurn(action) {
     if (action === "hit") {
       this.player.hand.addCard(this.deck.drawCard());
-      console.log("Player's Hand: " + this.player.hand.showHand());
       if (this.player.hand.isBust()) {
         this.endGame("Player Busts. Dealer Wins!");
       }
@@ -57,7 +52,6 @@ export default class Game {
 
   dealerTurn() {
     this.dealer.playTurn(this.deck);
-    console.log("Dealer's Hand: " + this.dealer.hand.showHand());
     if (this.dealer.hand.isBust()) {
       this.endGame("Dealer Busts. Player Wins!");
     } else {
@@ -68,8 +62,6 @@ export default class Game {
   determineWinner() {
     const playerHandValue = this.player.hand.getHandValue();
     const dealerHandValue = this.dealer.hand.getHandValue();
-    console.log("Player's Hand Value: " + playerHandValue);
-    console.log("Dealer's Hand Value: " + dealerHandValue);
 
     if (playerHandValue > dealerHandValue) {
       this.endGame("Player Wins!");
@@ -83,7 +75,5 @@ export default class Game {
   endGame(message) {
     this.isGameOver = true;
     this.message = message;
-    console.log(message);
-    console.log("Game Over!");
   }
 }
