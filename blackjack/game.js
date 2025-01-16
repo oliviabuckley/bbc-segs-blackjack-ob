@@ -48,7 +48,7 @@ export default class Game {
     } else if (action === "stand") {
       this.dealerTurn();
     } else {
-      console.log("Invalid action. Use 'hit' or 'stand'.");
+      this.message("Invalid action. Use 'hit' or 'stand'.");
     }
   }
 
